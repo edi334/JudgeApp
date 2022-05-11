@@ -5,6 +5,10 @@ VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JudgeApp.API", "JudgeApp.API\JudgeApp.API.csproj", "{84C51831-5CC3-4063-B4E8-8363FBD86291}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JudgeApp.Core", "JudgeApp.Core\JudgeApp.Core.csproj", "{EB63E91D-B4FD-460F-AFFF-1FFD15F8F38C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JudgeApp.Testing", "JudgeApp.Testing\JudgeApp.Testing.csproj", "{6984E3C7-22C8-431D-AEB8-AC806941E785}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{84C51831-5CC3-4063-B4E8-8363FBD86291}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84C51831-5CC3-4063-B4E8-8363FBD86291}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84C51831-5CC3-4063-B4E8-8363FBD86291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB63E91D-B4FD-460F-AFFF-1FFD15F8F38C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB63E91D-B4FD-460F-AFFF-1FFD15F8F38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB63E91D-B4FD-460F-AFFF-1FFD15F8F38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB63E91D-B4FD-460F-AFFF-1FFD15F8F38C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6984E3C7-22C8-431D-AEB8-AC806941E785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6984E3C7-22C8-431D-AEB8-AC806941E785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6984E3C7-22C8-431D-AEB8-AC806941E785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6984E3C7-22C8-431D-AEB8-AC806941E785}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
