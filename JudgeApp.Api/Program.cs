@@ -78,7 +78,10 @@ if (builder.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "JudgeApp.Api v1"));
 
+app.UseStaticFiles();
+
 app.UseRouting();
+app.UseCors("JudgeAppCorsPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();

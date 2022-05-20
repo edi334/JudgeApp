@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace VotEasy.Api.Areas.Identity.Pages.Account.Manage;
+namespace JudgeApp.API.Utils.Api.Areas.Identity.Pages.Account.Manage;
 
 public static class ManageNavPages
 {

@@ -1,7 +1,7 @@
 using System.Diagnostics;
+using JudgeApp.API.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VotEasy.Api.Models;
 
 namespace JudgeApp.API.Controllers;
 

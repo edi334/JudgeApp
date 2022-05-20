@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace VotEasy.Api.Areas.Identity.Pages.Account;
+namespace JudgeApp.API.Utils.Api.Areas.Identity.Pages.Account;
 
 [AllowAnonymous]
 public class LoginModel : PageModel

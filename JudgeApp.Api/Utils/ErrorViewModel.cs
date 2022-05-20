@@ -1,4 +1,4 @@
-namespace VotEasy.Api.Models;
+namespace JudgeApp.API.Utils;
 
 public class ErrorViewModel
 {

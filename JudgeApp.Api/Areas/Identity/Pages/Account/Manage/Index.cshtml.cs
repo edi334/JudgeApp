@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace VotEasy.Api.Areas.Identity.Pages.Account.Manage;
+namespace JudgeApp.API.Utils.Api.Areas.Identity.Pages.Account.Manage;
 
 public class IndexModel : PageModel
 {
