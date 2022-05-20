@@ -15,6 +15,17 @@ var configuration = builder.Configuration;
 services.AddControllersWithViews().AddNewtonsoftJson();
 services.AddRazorPages();
 
+services.AddCors(options =>
+{
+    options.AddPolicy("JudgeAppCorsPolicy", builder =>
+    {
+        builder
+            .WithOrigins("localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -51,6 +62,7 @@ services.Configure<IdentityOptions>(options =>
 });
 
 services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+services.AddSwaggerGen();
 
 var connectionString = configuration.GetConnectionString("Default");
 services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString, 
@@ -71,5 +83,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        "default",
+        "admin/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapRazorPages();
+});
 app.Run();
