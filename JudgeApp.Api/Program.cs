@@ -53,7 +53,8 @@ services.Configure<IdentityOptions>(options =>
 services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
 var connectionString = configuration.GetConnectionString("Default");
-services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
+services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString, 
+    x => x.MigrationsAssembly("JudgeApp.Core")));
 
 var app = builder.Build();
 
