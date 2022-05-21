@@ -10,6 +10,7 @@
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.5" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.18.0" />
     </ItemGroup>
 
 </Project>
