@@ -26,6 +26,8 @@ services.AddCors(options =>
     });
 });
 
+services.AddAutoMapper(typeof(MappingProfile));
+
 services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
