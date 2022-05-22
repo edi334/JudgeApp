@@ -6,7 +6,7 @@ namespace JudgeApp.API.ApiControllers;
 
 [ApiController]
 [Route("/api/auth")]
-public class AuthController : Controller
+public class AuthController : ControllerBase
 {
     private readonly IIdentityService _identityService;
 

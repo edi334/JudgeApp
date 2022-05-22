@@ -9,7 +9,8 @@ public static class CoreSpecifications
     public static IServiceCollection AddCoreSpecifications(this IServiceCollection services)
     {
         services.AddScoped<IIdentityService, IdentityService>();
-
+        services.AddScoped<IStatusRepository, StatusRepository>();
+        
         return services;
     }
 }
