@@ -8,6 +8,12 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { ProjectPageComponent } from './components/project-page/project-page.component';
 import { JudgingPageComponent } from './components/judging-page/judging-page.component';
 import { ResultPageComponent } from './components/result-page/result-page.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {HttpClientModule} from "@angular/common/http";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -20,7 +26,13 @@ import { ResultPageComponent } from './components/result-page/result-page.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

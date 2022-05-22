@@ -1,1 +1,76 @@
-<p>register-page works!</p>
+<div class="mb-5">
+  <form [formGroup]="form">
+
+    <mat-form-field class="full-width">
+      <input formControlName="email" matInput placeholder="Email">
+    </mat-form-field>
+    <ng-container *ngIf="!form.controls['email'].untouched && form.controls['email'].errors">
+      <mat-error *ngIf="form.controls['email'].errors['required']">
+        Acest câmp este obligatoriu!
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].errors['email']">
+        Adresă de mail invalidă!
+      </mat-error>
+    </ng-container>
+
+    <mat-form-field class="full-width">
+      <input formControlName="password" matInput placeholder="Parola" type="password">
+    </mat-form-field>
+    <ng-container *ngIf="!form.controls['password'].untouched && form.controls['password'].errors">
+      <mat-error *ngIf="form.controls['password'].errors['required']">
+        Acest câmp este obligatoriu!
+      </mat-error>
+      <mat-error *ngIf="form.controls['password'].errors['minlength']">
+        Parola este prea scurtă!
+      </mat-error>
+      <mat-error *ngIf="form.controls['password'].errors['maxlength']">
+        Parola nu poate avea mai mult de 100 caractere!
+      </mat-error>
+    </ng-container>
+
+    <mat-form-field class="full-width">
+      <input formControlName="confirmPassword" matInput placeholder="Confirmă parola" type="password">
+    </mat-form-field>
+    <ng-container
+      *ngIf="!form.controls['confirmPassword'].untouched && form.controls['confirmPassword'].errors">
+      <mat-error *ngIf="form.controls['confirmPassword'].errors['required']">
+        Acest câmp este obligatoriu!
+      </mat-error>
+      <mat-error *ngIf="form.controls['confirmPassword'].errors['mustMatch']">
+        Trebuie utilizată aceeași parolă!
+      </mat-error>
+    </ng-container>
+
+    <mat-form-field class="full-width">
+      <input formControlName="firstName" matInput placeholder="Prenume">
+    </mat-form-field>
+    <ng-container *ngIf="!form.controls['firstName'].untouched && form.controls['firstName'].errors">
+      <mat-error *ngIf="form.controls['firstName'].errors['required']">
+        Acest câmp este obligatoriu!
+      </mat-error>
+      <mat-error *ngIf="form.controls['firstName'].errors['minlength']">
+        Prenumele este prea scurt!
+      </mat-error>
+      <mat-error *ngIf="form.controls['firstName'].errors['maxlength']">
+        Prenume nu poate avea mai mult de 100 caractere!
+      </mat-error>
+    </ng-container>
+
+    <mat-form-field class="full-width">
+      <input formControlName="lastName" matInput placeholder="Nume">
+    </mat-form-field>
+    <ng-container *ngIf="!form.controls['lastName'].untouched && form.controls['lastName'].errors">
+      <mat-error *ngIf="form.controls['lastName'].errors['required']">
+        Acest câmp este obligatoriu!
+      </mat-error>
+      <mat-error *ngIf="form.controls['lastName'].errors['minlength']">
+        Numele este prea scurt!
+      </mat-error>
+      <mat-error *ngIf="form.controls['lastName'].errors['maxlength']">
+        Numele nu poate avea mai mult de 100 caractere!
+      </mat-error>
+    </ng-container>
+  </form>
+</div>
+
+<button >register</button>

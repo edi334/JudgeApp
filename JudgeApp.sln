@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JudgeApp.API", "JudgeApp.API\JudgeApp.API.csproj", "{84C51831-5CC3-4063-B4E8-8363FBD86291}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JudgeApp.API", "JudgeApp.Api\JudgeApp.Api.csproj", "{84C51831-5CC3-4063-B4E8-8363FBD86291}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JudgeApp.Core", "JudgeApp.Core\JudgeApp.Core.csproj", "{EB63E91D-B4FD-460F-AFFF-1FFD15F8F38C}"
 EndProject
