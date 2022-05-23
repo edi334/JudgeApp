@@ -1,5 +1,8 @@
-import { Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SnackService} from "../../services/snack.service";
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-page',
@@ -8,7 +11,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterPageComponent {
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private snack: SnackService,
+              private authService: AuthService,
+              private router: Router
+  ) {
   }
 
   form: FormGroup = this.formBuilder.group({
@@ -35,5 +42,23 @@ export class RegisterPageComponent {
         matchingControl.setErrors(null);
       }
     };
+  }
+
+  public async submit() {
+    this.snack.clear();
+
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      this.snack.display('Fill all fields');
+      return;
+    }
+
+    try {
+      await this.authService.register(this.form.value);
+      this.snack.display('Succes');
+      await this.router.navigate(['/']);
+    } catch (e) {
+      this.snack.showError(e);
+    }
   }
 }

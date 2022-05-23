@@ -9,11 +9,12 @@ import { ProjectPageComponent } from './components/project-page/project-page.com
 import { JudgingPageComponent } from './components/judging-page/judging-page.component';
 import { ResultPageComponent } from './components/result-page/result-page.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatInputModule,
     HttpClientModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import {map, tap} from "rxjs";
 import {IAuthSession, ILogin} from "../models/login";
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
+import {IRegister} from "../models/register";
 
 @Injectable({
   providedIn: 'root'
@@ -28,12 +29,16 @@ export class AuthService {
     return this.http.post<{ data: IAuthSession }>(url, requestModel)
       .pipe(tap(async res => {
         const authSession = res.data;
-        console.log(authSession);
         await this.saveSession(authSession);
       }))
       .pipe(map(() => {
         return true;
       })).toPromise();
+  }
+
+  public register(data: IRegister): Promise<any> {
+    const url = this._baseUrl+'api/auth/register';
+    return this.http.post<IRegister>(url, data).toPromise();
   }
 
   public async saveSession(authSession?: IAuthSession): Promise<void> {
@@ -87,6 +92,7 @@ export class AuthService {
 
     return new HttpHeaders().append('Authorization', `${session.tokenType} ${session.token}`);
   }
+
   public async getSession(): Promise<IAuthSession> {
     if (!this._session) {
       this._session = <IAuthSession>await this.storage.getItem(AuthService.sessionStorageKey).toPromise();

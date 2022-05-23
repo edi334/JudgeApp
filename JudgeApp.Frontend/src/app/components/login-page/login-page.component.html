@@ -1,23 +1,28 @@
-<form [formGroup]="form" class="d-flex flex-column">
-  <mat-form-field>
-    <input formControlName="email" matInput placeholder="Email">
-  </mat-form-field>
-  <ng-container *ngIf="!form.controls['email'].untouched && form.controls['email'].errors">
-    <mat-error *ngIf="form.controls['email'].errors['required']">
-      Field is required
-    </mat-error>
-    <mat-error *ngIf="form.controls['email'].errors['email']">
-      Invalid email
-    </mat-error>
-  </ng-container>
-  <mat-form-field class="full-width">
-    <input formControlName="password" matInput placeholder="Parola" type="password">
-  </mat-form-field>
-  <ng-container *ngIf="!form.controls['password'].untouched && form.controls['password'].errors">
-    <mat-error *ngIf="form.controls['password'].errors['required']">
-      Field is required
-    </mat-error>
-  </ng-container>
-</form>
-<button (click)="submit($event)">Log In</button>
-
+ <div class="container">
+    <h2>Log In</h2>
+      <form [formGroup]="form" class="forms">
+        <mat-form-field class="full-width">
+          <input formControlName="email" matInput placeholder="Email">
+        </mat-form-field>
+        <ng-container *ngIf="!form.controls['email'].untouched && form.controls['email'].errors">
+          <mat-error *ngIf="form.controls['email'].errors['required']">
+            Field is required
+          </mat-error>
+          <mat-error *ngIf="form.controls['email'].errors['email']">
+            Invalid email
+          </mat-error>
+        </ng-container>
+        <mat-form-field class="full-width">
+          <input formControlName="password" matInput placeholder="Parola" type="password">
+        </mat-form-field>
+        <ng-container *ngIf="!form.controls['password'].untouched && form.controls['password'].errors">
+          <mat-error *ngIf="form.controls['password'].errors['required']">
+            Field is required
+          </mat-error>
+        </ng-container>
+      </form>
+      <div class="buttons">
+        <button mat-raised-button [routerLink]="['/register']">Register</button>
+        <button mat-raised-button (click)="submit($event)">Log In</button>
+      </div>
+  </div>
