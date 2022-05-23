@@ -1,4 +1,4 @@
-import {Injectable, EventEmitter} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LocalStorage} from "@ngx-pwa/local-storage";
 import {map, tap} from "rxjs";
@@ -26,10 +26,9 @@ export class AuthService {
 
   public async login(requestModel: ILogin): Promise<any> {
     const url = this._baseUrl + 'api/auth/login';
-    return this.http.post<{ data: IAuthSession }>(url, requestModel)
+    return this.http.post<IAuthSession>(url, requestModel)
       .pipe(tap(async res => {
-        const authSession = res.data;
-        await this.saveSession(authSession);
+        await this.saveSession(res);
       }))
       .pipe(map(() => {
         return true;
@@ -43,6 +42,7 @@ export class AuthService {
 
   public async saveSession(authSession?: IAuthSession): Promise<void> {
     if (authSession) {
+      console.log(authSession);
       await this.storage.setItem(AuthService.tokenStorageKey, authSession.token).toPromise();
       await this.storage.setItem(AuthService.sessionStorageKey, authSession).toPromise();
     } else {
