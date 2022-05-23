@@ -37,7 +37,7 @@ export class AuthService {
 
   public register(data: IRegister): Promise<any> {
     const url = this._baseUrl+'api/auth/register';
-    return this.http.post<IRegister>(url, data).toPromise();
+    return this.http.post(url, data, {responseType: 'text'}).toPromise();
   }
 
   public async saveSession(authSession?: IAuthSession): Promise<void> {
