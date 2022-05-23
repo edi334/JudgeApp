@@ -1,5 +1,6 @@
 using System.Text;
 using JudgeApp.API.Utils;
+using JudgeApp.Core;
 using JudgeApp.Core.Database;
 using JudgeApp.Core.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +21,7 @@ services.AddCors(options =>
     options.AddPolicy("JudgeAppCorsPolicy", builder =>
     {
         builder
-            .WithOrigins("localhost:4200")
+            .WithOrigins("http://localhost:4200")
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
@@ -70,6 +71,8 @@ var connectionString = configuration.GetConnectionString("Default");
 services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString, 
     x => x.MigrationsAssembly("JudgeApp.Core")));
 
+services.AddCoreSpecifications();
+
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
@@ -95,4 +98,7 @@ app.UseEndpoints(endpoints =>
         "admin/{controller=Home}/{action=Index}/{id?}");
     endpoints.MapRazorPages();
 });
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 app.Run();

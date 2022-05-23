@@ -1,0 +1,34 @@
+.container{
+  margin: 0 10px;
+  max-width: 600px !important;
+}
+
+.forms{
+  background: white;
+  border-radius: 8px;
+  margin: 0 20px;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+h2{
+  color: #ffdf40;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #ffe45d !important;
+  margin: 15px 10px 0 ;
+}
+
+mat-error{
+  padding-bottom: 8px;
+}
