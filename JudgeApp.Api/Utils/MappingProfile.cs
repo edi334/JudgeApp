@@ -10,5 +10,6 @@ public class MappingProfile : Profile
     {
         CreateMap<Status, StatusDto>().ReverseMap();
         CreateMap<Project, ProjectDto>().ReverseMap();
+        CreateMap<Judging, JudgingDto>().ReverseMap();
     }
 }
