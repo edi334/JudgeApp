@@ -20,7 +20,7 @@ public class StatusController : ControllerBase
     }
 
     [HttpGet("active")]
-    public async Task<ActionResult<StatusDto>> GetActive()
+    public async Task<ActionResult> GetActive()
     {
         var status = await _statusRepository.GetActiveStatus();
         if (status.HasErrors()) return NotFound();

@@ -13,7 +13,7 @@
           </mat-error>
         </ng-container>
         <mat-form-field class="full-width">
-          <input formControlName="password" matInput placeholder="Parola" type="password">
+          <input formControlName="password" matInput placeholder="Password" type="password">
         </mat-form-field>
         <ng-container *ngIf="!form.controls['password'].untouched && form.controls['password'].errors">
           <mat-error *ngIf="form.controls['password'].errors['required']">

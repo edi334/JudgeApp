@@ -68,6 +68,7 @@ public class IdentityService : IIdentityService
 
         var session = new Session
         {
+            UserId = user.Id,
             TokenType = "Bearer",
             Token = GenerateToken(user, roles.FirstOrDefault()),
             Username = user.UserName,
