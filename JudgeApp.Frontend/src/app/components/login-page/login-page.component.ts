@@ -36,8 +36,8 @@ export class LoginPageComponent implements OnInit {
     this.saving = true;
     try {
       await this.authService.login(this.form.value);
-      const returnUrl = this.actr.snapshot.queryParams['returnUrl'];
-      await this.router.navigate(returnUrl ? [returnUrl] : ['/']);
+      const session=await this.authService.getSession();
+      await this.router.navigate(session.role==='Judge'? ['/judging']:['/project']);
       this.snack.display('Logged in successfully!');
     } catch (e) {
       this.snack.showError(e);

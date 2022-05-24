@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SnackService} from "../../services/snack.service";
 import {IProject} from "../../models/project";
 import {ProjectService} from "../../services/project.service";
+import {AuthService} from "../../services/auth.service";
+import {IAuthSession} from "../../models/login";
 
 @Component({
   selector: 'app-project-page',
@@ -11,14 +13,22 @@ import {ProjectService} from "../../services/project.service";
 })
 export class ProjectPageComponent implements OnInit {
   private project?: IProject;
+  private session?: IAuthSession;
 
   constructor(private formBuilder: FormBuilder,
               private snack: SnackService,
-              private projectService:ProjectService
+              private projectService: ProjectService,
+              private authService: AuthService
   ) {
   }
 
-  ngOnInit(){
+  async ngOnInit() {
+    this.session = await this.authService.getSession();
+    this.project = await this.projectService.getByUserId(this.session.userId);
+    this.form.controls['name'].patchValue(this.project?.name);
+    this.form.controls['description'].patchValue(this.project?.description);
+    this.form.controls['videoLink'].patchValue(this.project?.videoLink);
+    this.form.controls['githubLink'].patchValue(this.project?.githubLink);
   }
 
   form: FormGroup = this.formBuilder.group({
@@ -38,8 +48,12 @@ export class ProjectPageComponent implements OnInit {
     }
     try {
       if (this.project) {
+        this.form.addControl('id', new FormControl(''));
+        this.form.controls['id'].patchValue(this.project?.id);
         this.project = await this.projectService.update(this.form.value);
       } else {
+        this.form.addControl('userId', new FormControl(''));
+        this.form.controls['userId'].patchValue(this.session?.userId);
         this.project = await this.projectService.create(this.form.value);
       }
       this.snack.display('Your project details have been updated!');
