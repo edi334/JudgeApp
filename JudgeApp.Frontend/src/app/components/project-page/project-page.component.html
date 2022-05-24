@@ -1,1 +1,68 @@
-<p>project-page works!</p>
+<div class="container">
+  <h2>Project</h2>
+  <div class="forms">
+    <form [formGroup]="form">
+      <mat-form-field class="full-width">
+        <input formControlName="name" matInput placeholder="Name">
+      </mat-form-field>
+      <ng-container *ngIf="!form.controls['name'].untouched && form.controls['name'].errors">
+        <mat-error *ngIf="form.controls['name'].errors['required']">
+          Field is required
+        </mat-error>
+        <mat-error *ngIf="form.controls['name'].errors['minlength']">
+          Too short
+        </mat-error>
+        <mat-error *ngIf="form.controls['name'].errors['maxlength']">
+          Too long
+        </mat-error>
+      </ng-container>
+
+      <mat-form-field class="full-width">
+        <input formControlName="description" matInput placeholder="Description">
+      </mat-form-field>
+      <ng-container *ngIf="!form.controls['description'].untouched && form.controls['description'].errors">
+        <mat-error *ngIf="form.controls['description'].errors['required']">
+          Field is required
+        </mat-error>
+        <mat-error *ngIf="form.controls['description'].errors['minlength']">
+          Too short
+        </mat-error>
+        <mat-error *ngIf="form.controls['description'].errors['maxlength']">
+          Too long
+        </mat-error>
+      </ng-container>
+
+      <mat-form-field class="full-width">
+        <input formControlName="videoLink" matInput placeholder="Video link">
+      </mat-form-field>
+      <ng-container *ngIf="!form.controls['videoLink'].untouched && form.controls['videoLink'].errors">
+        <mat-error *ngIf="form.controls['videoLink'].errors['required']">
+          Field is required
+        </mat-error>
+        <mat-error *ngIf="form.controls['videoLink'].errors['minlength']">
+          Too short
+        </mat-error>
+        <mat-error *ngIf="form.controls['videoLink'].errors['maxlength']">
+          Too long
+        </mat-error>
+      </ng-container>
+
+      <mat-form-field class="full-width">
+        <input formControlName="githubLink" matInput placeholder="Project link">
+      </mat-form-field>
+      <ng-container *ngIf="!form.controls['githubLink'].untouched && form.controls['githubLink'].errors">
+        <mat-error *ngIf="form.controls['githubLink'].errors['required']">
+          Field is required
+        </mat-error>
+        <mat-error *ngIf="form.controls['githubLink'].errors['minlength']">
+          Too short
+        </mat-error>
+        <mat-error *ngIf="form.controls['githubLink'].errors['maxlength']">
+          Too long
+        </mat-error>
+      </ng-container>
+    </form>
+  </div>
+  <button mat-raised-button (click)="submit()">Submit</button>
+</div>
+

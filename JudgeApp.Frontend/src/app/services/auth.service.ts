@@ -42,7 +42,6 @@ export class AuthService {
 
   public async saveSession(authSession?: IAuthSession): Promise<void> {
     if (authSession) {
-      console.log(authSession);
       await this.storage.setItem(AuthService.tokenStorageKey, authSession.token).toPromise();
       await this.storage.setItem(AuthService.sessionStorageKey, authSession).toPromise();
     } else {

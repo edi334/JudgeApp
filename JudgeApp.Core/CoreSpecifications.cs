@@ -10,6 +10,7 @@ public static class CoreSpecifications
     {
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IStatusRepository, StatusRepository>();
+        services.AddScoped<IProjectRepository, ProjectRepository>();
         
         return services;
     }
