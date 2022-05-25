@@ -18,7 +18,7 @@ export class ProjectService {
     const options = await this.authService.getOptions(true);
     const session = await this.authService.getSession();
     const url = this._baseUrl + `api/projects/${session.userId}`;
-    return await this.http.get<IProject[]>(url).toPromise();
+    return await this.http.get<IProject[]>(url, options).toPromise();
   }
 
   public async create(data: IProject): Promise<IProject | undefined> {

@@ -43,9 +43,7 @@ public class JudgingController : ControllerBase
         {
             return BadRequest(judgingResponse.GetErrors());
         }
-
-        var response = _mapper.Map<JudgingDto>(judgingResponse.Item);
-
-        return Ok(response);
+        
+        return Ok(judgingResponse.Item);
     }
 }
