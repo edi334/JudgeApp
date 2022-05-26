@@ -99,6 +99,7 @@ public class IdentityService : IIdentityService
             Email = request.Email,
             FirstName = request.FirstName,
             LastName = request.LastName,
+            EmailConfirmed = true,
             Created = DateTime.Now,
             Updated = DateTime.Now
         };

@@ -45,6 +45,14 @@ public class ProjectRepository : IProjectRepository
         return response;
     }
 
+    public async Task<ActionResponse<List<Project>>> GetAll()
+    {
+        var response = new ActionResponse<List<Project>>();
+        var projects = await _dbContext.Projects.OrderBy(p => p.FinalStanding).ToListAsync();
+        response.Item = projects;
+        return response;
+    }
+
     public async Task<ActionResponse<Project>> GetProjectByUserId(Guid id)
     {
         var response = new ActionResponse<Project>();
@@ -83,7 +91,7 @@ public class ProjectRepository : IProjectRepository
         
         var project = new Project
         {
-            Name = name, Description = description, VideoLink = videoLink, GithubLink = githubLink, FinalStanding = 0,
+            Name = name, Description = description, VideoLink = videoLink, GithubLink = githubLink, FinalStanding = 0, Count = 0,
             UserId = userId
         };
         var dbProject = await _dbContext.Projects.AddAsync(project);
@@ -128,5 +136,10 @@ public class ProjectRepository : IProjectRepository
         await _dbContext.SaveChangesAsync();
         response.Item = projectToDelete;
         return response;
+    }
+
+    public async Task SaveProjects()
+    {
+        await _dbContext.SaveChangesAsync();
     }
 }

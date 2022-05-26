@@ -16,6 +16,6 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <button mat-raised-button (click)="judge()">Judge</button>
+    <button [disabled]="!isJudging" mat-raised-button (click)="judge()">Judge</button>
   </div>
 </ng-container>
