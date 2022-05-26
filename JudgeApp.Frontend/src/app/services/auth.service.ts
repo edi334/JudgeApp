@@ -70,6 +70,15 @@ export class AuthService {
     return {headers: await this.getHeaders(needsAuth)};
   }
 
+  public async hasRole(role: string): Promise<boolean> {
+    const session = await this.getSession();
+    if (!session || !session.role) {
+      return false;
+    }
+
+    return session.role.indexOf(role) !== -1;
+  }
+
   public async getHeaders(needsAuth?: boolean): Promise<HttpHeaders> {
     if (!needsAuth) {
       return new HttpHeaders();
