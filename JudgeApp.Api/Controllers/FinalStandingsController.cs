@@ -10,13 +10,11 @@ public class FinalStandingsController : Controller
 {
     private readonly IProjectRepository _projectRepository;
     private readonly IJudgingRepository _judgingRepository;
-    private readonly IStatusRepository _statusRepository;
 
-    public FinalStandingsController(IJudgingRepository judgingRepository, IProjectRepository projectRepository, IStatusRepository statusRepository)
+    public FinalStandingsController(IJudgingRepository judgingRepository, IProjectRepository projectRepository)
     {
         _judgingRepository = judgingRepository;
         _projectRepository = projectRepository;
-        _statusRepository = statusRepository;
     }
 
     [HttpGet]
@@ -28,13 +26,6 @@ public class FinalStandingsController : Controller
     [HttpPost]
     public async Task<IActionResult> GenerateFinalStandings()
     {
-        var status = await _statusRepository.GetActiveStatus();
-
-        if (status.Item.Name != "Getting Results")
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        
         var projects = await _projectRepository.GetAll();
 
         foreach (var project in projects.Item)
