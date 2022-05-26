@@ -3,6 +3,7 @@ using JudgeApp.Core.Database;
 using JudgeApp.Core.Entities;
 using JudgeApp.Core.Services.Abstractions;
 using JudgeApp.Core.Utils;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace JudgeApp.Core.Services;
@@ -14,6 +15,14 @@ public class JudgingRepository : IJudgingRepository
     public JudgingRepository(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
+    }
+
+    public async Task<ActionResponse<List<Judging>>> GetAll()
+    {
+        var response = new ActionResponse<List<Judging>>();
+        var judgingEntities = await _dbContext.JudgingEntities.ToListAsync();
+        response.Item = judgingEntities;
+        return response;
     }
 
     public async Task<ActionResponse<List<Judging>>> AddOrUpdate(List<Judging> judgingEntities)

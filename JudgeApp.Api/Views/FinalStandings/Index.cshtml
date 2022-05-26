@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Generate Final Standings</h1>
+
+@using (Html.BeginForm("GenerateFinalStandings", "FinalStandings", FormMethod.Post))
+{
+    <input type="submit" value="Generate Final Standings">
+}
