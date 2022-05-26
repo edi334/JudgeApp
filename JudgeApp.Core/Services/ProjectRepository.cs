@@ -48,7 +48,7 @@ public class ProjectRepository : IProjectRepository
     public async Task<ActionResponse<List<Project>>> GetAll()
     {
         var response = new ActionResponse<List<Project>>();
-        var projects = await _dbContext.Projects.OrderByDescending(p => p.FinalStanding).ToListAsync();
+        var projects = await _dbContext.Projects.OrderBy(p => p.FinalStanding).ToListAsync();
         response.Item = projects;
         return response;
     }

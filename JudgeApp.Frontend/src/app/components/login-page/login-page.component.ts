@@ -4,6 +4,8 @@ import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SnackService} from "../../services/snack.service";
 
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -36,14 +38,13 @@ export class LoginPageComponent implements OnInit {
     this.saving = true;
     try {
       await this.authService.login(this.form.value);
+      await delay(1000);
       const session=await this.authService.getSession();
-      await this.router.navigate(session.role==='Judge'? ['/judging']:['/project']);
+      await this.router.navigate(session.role==='Judge'? ['judging']:['project']);
       this.snack.display('Logged in successfully!');
     } catch (e) {
       this.snack.showError(e);
     }
     this.saving = false;
   }
-
-
 }
