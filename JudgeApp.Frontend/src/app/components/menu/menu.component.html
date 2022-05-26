@@ -1,0 +1,9 @@
+<div>
+  <button mat-button [matMenuTriggerFor]="menu" class="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button [routerLink]="['/result']" mat-menu-item>Result</button>
+    <button *ngIf="!isJudge" [routerLink]="['/project']" mat-menu-item>Project</button>
+    <button *ngIf="isJudge" [routerLink]="['/judging']" mat-menu-item>Judging</button>
+    <button (click)="logout()" mat-menu-item>Log out</button>
+  </mat-menu>
+</div>
