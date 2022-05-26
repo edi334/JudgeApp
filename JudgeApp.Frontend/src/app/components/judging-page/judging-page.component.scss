@@ -1,0 +1,37 @@
+.links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+mat-card {
+  width: 300px;
+  margin: 15px 0;
+  cursor: move;
+  box-sizing: border-box;
+  word-break: break-word;
+
+  .mat-card-content, .mat-card-title, .mat-card-subtitle {
+    padding: 10px;
+  }
+}
+
+h2{
+  color: #ffdf40;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+button {
+  background-color: #ffe45d !important;
+  margin: 15px 10px 0 ;
+}

@@ -5,7 +5,7 @@ namespace JudgeApp.Core.Services.Abstractions;
 
 public interface IProjectRepository
 {
-    Task<ActionResponse<List<Project>>> GetProjects();
+    Task<ActionResponse<List<Project>>> GetProjects(string userId);
     Task<ActionResponse<Project>> GetProjectByUserId(Guid id);
 
     Task<ActionResponse<Project>> CreateProject(string name, string description, string videoLink, string githubLink,

@@ -16,10 +16,30 @@ public class ProjectRepository : IProjectRepository
     }
 
 
-    public async Task<ActionResponse<List<Project>>> GetProjects()
+    public async Task<ActionResponse<List<Project>>> GetProjects(string userId)
     {
         var response = new ActionResponse<List<Project>>();
-        var projects = await _dbContext.Projects.ToListAsync();
+
+        var judgingEntitiesQuery = _dbContext.JudgingEntities
+            .Where(j => j.JudgeId == userId);
+
+        var judgingEntities = await judgingEntitiesQuery.ToListAsync();
+
+        List<Project> projects;
+
+        if (judgingEntities.Count ==0)
+        {
+            projects = await _dbContext.Projects.ToListAsync();
+        }
+        else
+        {
+            projects = await judgingEntitiesQuery
+                .OrderBy(j => j.Standing)
+                .Include(j => j.Project)
+                .Select(j => j.Project)
+                .ToListAsync();
+        }
+        
         response.Item = projects;
 
         return response;
@@ -40,12 +60,27 @@ public class ProjectRepository : IProjectRepository
         return response;
     }
 
-    public async Task<ActionResponse<Project>> CreateProject(string name, string description, string videoLink,
-        string githubLink,
-        string userId)
+    public async Task<ActionResponse<Project>> CreateProject(string name, string description,
+        string videoLink, string githubLink, string userId)
     {
         var response = new ActionResponse<Project>();
 
+        var userExists = await _dbContext.Users.AnyAsync(u => u.Id == userId);
+
+        if (!userExists)
+        {
+            response.AddError("User doesn't exist!");
+            return response;
+        }
+        
+        var projectForUserExists = await _dbContext.Projects.AnyAsync(p => p.UserId == userId);
+
+        if (projectForUserExists)
+        {
+            response.AddError("User already submitted a project!");
+            return response;
+        }
+        
         var project = new Project
         {
             Name = name, Description = description, VideoLink = videoLink, GithubLink = githubLink, FinalStanding = 0,

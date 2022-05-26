@@ -14,27 +14,28 @@ export class ProjectService {
               private http: HttpClient) {
   }
 
-  public async create(data: IProject): Promise<any> {
-    const url = this._baseUrl + 'api/projects';
+  public async getAll(): Promise<IProject[] | undefined> {
     const options = await this.authService.getOptions(true);
-    return await this.http.post<{ data: IProject }>(url, data, options).toPromise();
+    const session = await this.authService.getSession();
+    const url = this._baseUrl + `api/projects/${session.userId}`;
+    return await this.http.get<IProject[]>(url, options).toPromise();
   }
 
-  public async update(data: IProject): Promise<any> {
+  public async create(data: IProject): Promise<IProject | undefined> {
     const url = this._baseUrl + 'api/projects';
     const options = await this.authService.getOptions(true);
-    return await this.http.patch<{ data: IProject }>(url, data, options).toPromise();
+    return await this.http.post<IProject>(url, data, options).toPromise();
   }
 
-  public async getByUserId(id: string): Promise<any> {
+  public async update(data: IProject): Promise<IProject | undefined> {
+    const url = this._baseUrl + 'api/projects';
+    const options = await this.authService.getOptions(true);
+    return await this.http.patch<IProject>(url, data, options).toPromise();
+  }
+
+  public async getByUserId(id: string): Promise<IProject | undefined> {
     const url = this._baseUrl + 'api/projects/user/' + id;
     const options = await this.authService.getOptions(true);
-
-    try {
-      return await this.http.get<{ data: IProject }>(url, options).toPromise();
-    } catch {
-      return null;
-    }
+    return await this.http.get<IProject>(url, options).toPromise();
   }
-
 }
