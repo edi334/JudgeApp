@@ -5,6 +5,7 @@ import {IProject} from "../../models/project";
 import {ProjectService} from "../../services/project.service";
 import {AuthService} from "../../services/auth.service";
 import {IAuthSession} from "../../models/login";
+import {StatusService} from "../../services/status.service";
 
 @Component({
   selector: 'app-project-page',
@@ -14,11 +15,13 @@ import {IAuthSession} from "../../models/login";
 export class ProjectPageComponent implements OnInit {
   private project?: IProject;
   private session?: IAuthSession;
+  public statusProjectUpload?: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private snack: SnackService,
               private projectService: ProjectService,
-              private authService: AuthService
+              private authService: AuthService,
+              private statusService: StatusService
   ) {
   }
 
@@ -29,6 +32,13 @@ export class ProjectPageComponent implements OnInit {
     this.form.controls['description'].patchValue(this.project?.description);
     this.form.controls['videoLink'].patchValue(this.project?.videoLink);
     this.form.controls['githubLink'].patchValue(this.project?.githubLink);
+    try {
+      this.statusProjectUpload = await this.statusService.isStatus('Project Upload');
+    }
+    catch (e){
+      this.statusProjectUpload=false;
+    }
+    if (!this.statusProjectUpload) this.form.disable();
   }
 
   form: FormGroup = this.formBuilder.group({

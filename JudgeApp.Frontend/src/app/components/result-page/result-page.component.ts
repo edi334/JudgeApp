@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ProjectService} from "../../services/project.service";
+import {IProject} from "../../models/project";
+import {StatusService} from "../../services/status.service";
 
 @Component({
   selector: 'app-result-page',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./result-page.component.scss']
 })
 export class ResultPageComponent implements OnInit {
+  projects?: IProject[];
+  statusProjectUpload: boolean | undefined;
 
-  constructor() { }
+  constructor(private _projectService: ProjectService,
+              private _statusService: StatusService
+  ) {
+  }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.projects = await this._projectService.getAll();
+    this.statusProjectUpload = await this._statusService.isStatus('Getting Results');
   }
 
 }

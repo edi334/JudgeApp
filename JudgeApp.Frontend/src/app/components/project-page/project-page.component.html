@@ -1,5 +1,7 @@
+<app-menu></app-menu>
 <div class="container">
   <h2>Project</h2>
+  <h3 *ngIf="!this.statusProjectUpload">You can't edit project now</h3>
   <div class="forms">
     <form [formGroup]="form">
       <mat-form-field class="full-width">
@@ -63,6 +65,6 @@
       </ng-container>
     </form>
   </div>
-  <button mat-raised-button (click)="submit()">Submit</button>
+  <button mat-raised-button (click)="submit()" [disabled]="!statusProjectUpload">Submit</button>
 </div>
 
